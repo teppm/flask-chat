@@ -1,3 +1,13 @@
+  
 {
-    "python.pythonPath": "env\\Scripts\\python.exe"
+    "python.pythonPath": "env\\Scripts\\python.exe",
+    "python.linting.enabled": true,
+    "python.terminal.activateEnvironment": true,
+    "files.autoSave": "onFocusChange",
+    "terminal.integrated.env.windows" : {
+        "DEV": "1",
+        "FLASK_DEBUG": "1",
+        
+    }
+
 }
