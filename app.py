@@ -19,6 +19,7 @@ def user(username):
 app.route('/<username>/<message>')
 
 def send_msg(username, message):
+    """create a new message and redirect back to chat page""" 
     return "{0}:{1}".format(username, message)
 
 
