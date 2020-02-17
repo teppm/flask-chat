@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Flask, redirect, render_template, request, session
 
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 app.secret_key = "1secret2key"
 
