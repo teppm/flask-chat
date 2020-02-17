@@ -3,25 +3,25 @@ from datetime import datetime
 from flask import Flask, redirect, render_template, request, session
 
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 app.secret_key = "1secret2key"
 
-message = []
+messages = []
 
 def add_messages(username, message):
     """Add messages to messages list """ 
     now = datetime.now().strftime("%H:%M:%S")
-    message.append("({}){}:{}".format(now, username, message))
+    messages.append("({}){}:{}".format(now, username, message))
 
 
 def get_all_message():
     """Get all message and separate with br"""
 
-    return "<br>".join(message)
+    return "<br>".join(messages)
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 
 def index():
 
@@ -34,14 +34,14 @@ def index():
 
     return render_template("index.html")
 
-app.route('/<username>')
+app.route("/<username>")
 
 def user(username):
     """Display chat messages""" 
 
     return "<h1>Welcome!</h1>, {0}</h1>,{1}".format(username, get_all_message())
 
-app.route('/<username>/<message>')
+app.route("/<username>/<message>")
 
 
 def send_msg(username, message):
