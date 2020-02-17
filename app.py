@@ -1,9 +1,12 @@
 import os 
 from datetime import datetime
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request, session
 
 
 app = Flask(__name__)
+
+app.secret_key = "1secret2key"
+
 message = []
 
 def add_messages(username, message):
@@ -18,11 +21,17 @@ def get_all_message():
     return "<br>".join(message)
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 
 def index():
 
     """main page with instructions"""
+    if request.method == "POST":
+        session["username"] = request.form["username"]
+
+    if "username" in session:
+        return redirect(session["username"])
+
     return render_template("index.html")
 
 app.route('/<username>')
@@ -30,7 +39,7 @@ app.route('/<username>')
 def user(username):
     """Display chat messages""" 
 
-    return "<h1>Welcom</h1>, {0}</h1>,{1}".format(username, get_all_message())
+    return "<h1>Welcome!</h1>, {0}</h1>,{1}".format(username, get_all_message())
 
 app.route('/<username>/<message>')
 
