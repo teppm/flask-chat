@@ -33,7 +33,7 @@ def index():
 
     return render_template("index.html")
 
-app.route("/<username>")
+@app.route("/<username>")
 
 def user(username):
     """Display chat messages""" 
